@@ -54,17 +54,17 @@ Shader "Unlit/NewUnlitShader"
 
 			float4 frag(v2f i) : SV_Target
 			{
-				//float4 color2 = float4(i.uv.r, i.uv.g, 0, 1);
+				float4 color2 = float4(i.uv.r, i.uv.g, 0, 1);
 				//float4 color = float4(0.3f*uv.r, 0.59f * uv.g, 0.11f, 1);
-				//float4 color = lerp(tex2D(_MainTex, i.uv *2), tex2D(_SecondTex,i.uv * 2), _Tween) *color2;
-				/*float4 color2 = tex2D(_SecondTex, i.uv) * _Color; 
-				float4 output = lerp(_MainTex, _SecondTex, _Tween);*/
+				float4 color = lerp(tex2D(_MainTex, i.uv *2), tex2D(_SecondTex,i.uv * 2), _Tween) *color2;
+				//float4 color2 = tex2D(_SecondTex, i.uv) * _Color; 
+				//float4 output = lerp(_MainTex, _SecondTex, _Tween);*/
 
-				float4 color = tex2D(_MainTex, i.uv);
+				/*float4 color = tex2D(_MainTex, i.uv);
 				float lum = color.r * 0.3 + color.g * 0.59 + color.b * 0.11;
 				float4 grayscale = float4(lum, lum, lum, color.a);
-				return grayscale * _Color;
-				//return color;
+				return grayscale * _Color;*/
+				return color;
 			}
 			ENDCG
 		}
